@@ -28,4 +28,4 @@ steps:
     regionName: 'eu-west-1'
     sourceImageName: 's_mymvcweb'
     repositoryName: 'ecr-demo'
-    targetRepositoryTag: 's_mymvcweb:latest'
+    pushTag: 's_mymvcweb:latest'
