@@ -17,5 +17,5 @@ steps:
   displayName: 'docker build'
 
 - script: docker login -u srinub66 -p "Srinu_66"
-          docker push your-container-image-name:$(build.buildId)
+          docker push s_mymvcweb:latest
   displayName: 'docker push'
