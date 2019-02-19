@@ -21,10 +21,4 @@ steps:
 - script: docker-compose build
   displayName: 'docker build'
 
-- task: AmazonWebServices.aws-vsts-tools.ECRPushImage.ECRPushImage@1
-  displayName: 'Push Image: '
-  inputs:
-    awsCredentials: 'srini-aws'
-    regionName: 'eu-west-1'
-    sourceImageName: 's_mymvcweb'
-    repositoryName: 'ecr-demo'  
+ 
