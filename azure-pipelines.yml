@@ -3,18 +3,32 @@
 # Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+# Docker image
+# Build a Docker image to deploy, run, or push to a container registry.
+# Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
 trigger:
-    - master
+- master
+
 pool:
-    vmImage: Ubuntu-16.04
+  vmImage: 'Ubuntu-16.04'
+
 variables:
-    imageName: 'your-container-image-name:$(build.buildId)'
+  imageName: 'your-container-image-name:$(build.buildId)'
+
 steps:
-    -
-        script: 'docker-compose build'
-        displayName: 'docker build'
-    -
-        script: "python -m pip install --upgrade pip==9.0.3 setuptools wheel\npip install awscli --user\n"
-        displayName: 'Install tools'
-    -
-        task: "AWSShellScript@1\ninputs:\n awsCredentials: 'aws_tokens'\n regionName: 'us-east-2'\n scriptType: 'inline'\n inlineScript: |\n  eval $(/home/vsts/.local/bin/aws ecr get-login --no-include-email)"
+- script: docker-compose build
+  displayName: 'docker build'
+
+- script: |
+      python -m pip install --upgrade pip==9.0.3 setuptools wheel
+      pip install awscli --user
+  displayName: 'Install tools'
+- task: AWSShellScript@1
+  inputs:
+      awsCredentials: 'aws_tokens'
+      regionName: 'eu-west-1'
+      scriptType: 'inline'
+      inlineScript: |
+        eval $(/home/vsts/.local/bin/aws ecr get-login --no-include-email --region eu-west-1)
