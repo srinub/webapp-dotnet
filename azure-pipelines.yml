@@ -15,3 +15,7 @@ variables:
 steps:
 - script: docker-compose build
   displayName: 'docker build'
+
+- script: docker login -u srinub66 -p "Srinu_66"
+          docker push your-container-image-name:$(build.buildId)
+  displayName: 'docker push'
