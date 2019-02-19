@@ -19,5 +19,14 @@ steps:
 - script: docker-compose build
   displayName: 'docker build'
 
-- script: docker login -u srinub66 -p "Srinu_66" && docker tag s_mymvcweb:latest srinub66/mymvcweb:latest && docker push srinub66/mymvcweb:latest
-  displayName: 'docker push'
+- script: |
+      python -m pip install --upgrade pip==9.0.3 setuptools wheel
+      pip install awscli --user
+      displayName: 'Install tools'
+      - task: AWSShellScript@1
+        inputs:
+        awsCredentials: 'aws_tokens'
+        regionName: 'us-east-2'
+        scriptType: 'inline'
+        inlineScript: |
+          eval $(/home/vsts/.local/bin/aws ecr get-login --no-include-email)
