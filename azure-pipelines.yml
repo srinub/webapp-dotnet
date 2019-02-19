@@ -27,7 +27,7 @@ steps:
   displayName: 'Install tools'
 - task: AWSShellScript@1
   inputs:
-      awsCredentials: 'aws_tokens'
+      awsCredentials: 'srini-aws'
       regionName: 'eu-west-1'
       scriptType: 'inline'
       inlineScript: |
