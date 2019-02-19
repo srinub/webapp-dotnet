@@ -27,5 +27,5 @@ steps:
     awsCredentials: 'srini-aws'
     regionName: 'eu-west-1'
     sourceImageName: 's_mymvcweb'
-    repositoryName: 'ecr-demo/s_mymvcweb'
+    repositoryName: 's_mymvcweb'
     pushTag: 'latest'
