@@ -20,15 +20,3 @@ variables:
 steps:
 - script: docker-compose build
   displayName: 'docker build'
-
-- script: |
-      python -m pip install --upgrade pip==9.0.3 setuptools wheel
-      pip install awscli --user
-  displayName: 'Install tools'
-- task: AWSShellScript@1
-  inputs:
-      awsCredentials: 'srini-aws'
-      regionName: 'eu-west-1'
-      scriptType: 'inline'
-      inlineScript: |
-        echo $(/home/vsts/.local/bin/aws ecr get-login --no-include-email --region eu-west-1)
