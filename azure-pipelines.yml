@@ -13,6 +13,10 @@ variables:
   imageName: 'your-container-image-name:$(build.buildId)'
 
 steps:
+- script: curl -O https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && pip install awscli — upgrade
+  displayName: 'Install AWS CLI Installation'
+
+steps:
 - script: docker-compose build
   displayName: 'docker build'
 
