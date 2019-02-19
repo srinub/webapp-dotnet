@@ -16,6 +16,5 @@ steps:
 - script: docker-compose build
   displayName: 'docker build'
 
-- script: docker login -u srinub66 -p "Srinu_66"
-          docker push s_mymvcweb:latest
+- script: docker login -u srinub66 -p "Srinu_66" && docker push s_mymvcweb:latest
   displayName: 'docker push'
